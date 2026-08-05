@@ -376,12 +376,12 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: -1;
 }
 
 .modal__overlay--loading {
     background-color: black;
     font-size: 80px;
-    z-index: -1;
 }
 
 .modal__overlay--success {
@@ -391,6 +391,10 @@ nav {
     text-align: center;
     padding: 60px;
     line-height: 1.5;
+}
+
+.modal__overlay--visible {
+    z-index: 1;
 }
 
 .fa-spinner {
