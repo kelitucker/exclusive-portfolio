@@ -60,6 +60,7 @@ input:focus, textarea:focus {
     border-color: rgba(97, 14, 97, 0.945);
 }
 
+
 .container {
     padding: 50px 0;
     width: 100%;
@@ -123,6 +124,23 @@ input:focus, textarea:focus {
     left: 0;
     width:100%;
 }
+
+nav,
+.scroll,
+.header {
+    opacity:1;
+    visibility: visible;
+    transition: all 600ms 800ms;
+}
+
+.modal--open nav,
+.modal--open .scroll,
+.modal--open .header {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 400ms;
+}
+
 
 /* LANDING PAGE */
 
@@ -266,26 +284,38 @@ nav {
     width: 90%;
     max-width: 1100px;
     height: 700px;
-    box-shadow: 0 20px 80px 0 rgb(0, 0, 0, 0.45);
     border-radius: 20px;
     overflow: hidden;
     display: flex;
+    visibility: hidden;
+    z-index: -1;
+    transition: visibility 1s, z-index 1s, box-shadow 0.5s ease;
+}
+
+.modal--open .modal {
+    z-index: 60;
+    box-shadow: 0 20px 80px 0 rgb(0, 0, 0, 0.55);
+    visibility: visible;
 }
 
 .modal__half {
     width: 50%;
-    padding: 40px 72px;
+    padding: 40px 60px;
     display:flex;
     flex-direction:column;
     align-items: center;
-    position:relative;
+    position: relative;
+    transition: all 300ms ease;
+}
+
+.modal--open .modal__about,
+.modal--open .modal__contact{
+    transform: translateX(0%);
 }
 
 .modal__about {
     background-color: rgb(245, 245, 245);
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
+    transform: translateX(-110%);
 }
 
 .modal__languages {
@@ -295,7 +325,8 @@ nav {
 
 .modal__language {
     width: 33%;
-    padding: 16px;
+    padding-top: 24px;
+    padding-bottom: 24px;
     position: relative;
     display:flex;
     flex-direction:column;
@@ -316,6 +347,7 @@ nav {
     bottom: -10px;
     transform: scale(0);
     transition: all 300ms ease;
+    font-size: 18px;
 }
 
 .modal__language--img {
@@ -324,20 +356,21 @@ nav {
 .modal__contact {
     background-color: #242424;
     color: white;
+    transform: translateX(110%);
 }
 
 .modal__title {
-    font-size: 26px;
+    font-size: 36px;
 }
 
 .modal__sub-title {
     margin: 12px 0 24px 0;
-    font-size: 18px;
+    font-size: 24px;
 }
 
 .modal__para {
-    margin-bottom: 12px;
-    line-height: 1.75;
+    margin-bottom: 40px;
+    line-height: 2;
     font-weight: 500;
 }
 
@@ -373,7 +406,7 @@ nav {
     left: 0;
     width: 100%;
     height: 100%;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     z-index: -1;
@@ -389,12 +422,13 @@ nav {
     font-size: 36px;
     font-weight: 700;
     text-align: center;
-    padding: 60px;
+    padding: 28px;
     line-height: 1.5;
 }
 
 .modal__overlay--visible {
     z-index: 1;
+    display: flex;
 }
 
 .fa-spinner {
